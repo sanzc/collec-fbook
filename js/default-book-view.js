@@ -1,3 +1,7 @@
+$(function() {
+    console.log("JQUERY IS READY!");
+});
+
 function init(container) {
   var instance;
   if(window.jQuery) {
