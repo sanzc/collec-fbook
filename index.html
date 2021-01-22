@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Debugging</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+      body {
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        height: 95vh;
+        width: 95%;
+        margin: 20px auto;
+      }
+      .fullscreen {
+        background-color: #333;
+      }
+    </style>
+
+    <div class="container" id="heroflipbook"></div>
+
+    <script src="js/libs/jquery.min.js"></script>
+    <script src="js/libs/html2canvas.min.js"></script>
+    <script src="js/libs/three.min.js"></script>
+    <script src="js/libs/pdf.min.js"></script>
+
+    <script src="js/dist/3dflipbook.js"></script>
+    <script type="text/javascript">
+
+      function theKingIsBlackPageCallback(n) {
+        return {
+          type: 'html',
+          src: 'books/html/preview/'+(n%8+1)+'.html',
+          interactive: true
+        };
+      }
+
+      $('#heroflipbook').FlipBook({
+        pageCallback: theKingIsBlackPageCallback,
+        pages: 240,
+        propertiesCallback: function(props) {
+          //props.cover.color = 0x9C7D67;
+          //props.cover.padding = 0.002;
+          return props;
+        },
+        template: {
+          html: 'templates/custom.html',
+          styles: [
+            'css/black-book-view.css'
+          ],
+          links: [
+            {
+              rel: 'stylesheet',
+              href: 'css/font-awesome.min.css'
+            }
+          ],
+          script: 'js/default-book-view.js',
+        },
+        ready: function(scene) {
+                  setTimeout(function() {
+                    scene.visual.getOrbit().actions.rotate(null, {dx: 0, dy: -25, state: 'move'});
+                  }, 10);
+        }
+      });
+
+    </script>
+
+  </body>
+</html>
