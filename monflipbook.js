@@ -1,7 +1,7 @@
 function monflipbook(n) {
     return {
       type: 'html',
-      src: 'https://rawcdn.githack.com/sanzc/collec-fbook/e6b9c693ec8a5e218a28708083d408cd8ced431d/books/html/preview/1.html',
+      src: 'https://rawcdn.githack.com/sanzc/collec-fbook/e6b9c693ec8a5e218a28708083d408cd8ced431d/books/html/preview/'+(n%8+1)+'.html',
       interactive: true
     };
   }
